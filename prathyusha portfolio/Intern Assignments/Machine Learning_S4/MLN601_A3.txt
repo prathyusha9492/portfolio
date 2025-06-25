@@ -1,0 +1,213 @@
+# Import Libraries Required
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import GridSearchCV
+
+#Data source:
+hour_data = pd.read_csv('hour.csv')
+hour_data.head()
+
+
+hour_data.columns
+
+hour_data.shape
+
+hour_data.dtypes
+
+hour_data.describe()
+
+hour_data.info()
+
+hour_data.head(10)
+
+hour_data.isnull().sum()
+
+hour_data.duplicated().sum()
+
+# remove outliers
+numerical_cols = hour_data.select_dtypes(include=np.number).columns
+for col in numerical_cols:
+  Q1 = hour_data[col].quantile(0.25)
+  Q3 = hour_data[col].quantile(0.75)
+  IQR = Q3 - Q1
+  lower_bound = Q1 - 3 * IQR
+  upper_bound = Q3 + 3 * IQR
+  hour_data = hour_data[(hour_data[col] >= lower_bound) & (hour_data[col] <= upper_bound)]
+
+hour_data.shape
+
+def count_values_table(df):
+  count_val = df.value_counts()
+  count_val_percent = 100 * df.value_counts() / len(df)
+  count_val_table = pd.concat([count_val, count_val_percent.round(1)], axis=1)
+  count_val_table_ren_columns = count_val_table.rename(
+  columns = {0 : 'Count Values', 1 : '% of Total Values'})
+  return count_val_table_ren_columns
+
+# Histogram
+def hist_chart(df, col):
+  plt.style.use('fivethirtyeight')
+  plt.hist(df[col].dropna(), edgecolor = 'k');
+  plt.xlabel(col); plt.ylabel('Number of Entries');
+  plt.title('Distribution of '+col);
+
+col = 'season'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.season)
+
+col = 'yr'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.yr)
+
+col = 'mnth'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.mnth)
+
+col = 'holiday'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.holiday)
+
+col = 'weekday'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.weekday)
+
+col = 'hr'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.hr)
+
+col = 'cnt'
+# Histogram & Results
+hist_chart(hour_data, col)
+count_values_table(hour_data.cnt)
+
+# pair plot
+sns.pairplot(hour_data)
+plt.show()
+
+# changing datetime format
+hour_data['dteday'] = pd.to_datetime(hour_data['dteday'])
+
+# correlation plot
+plt.figure(figsize=(15,10))
+corrMatrix = hour_data.corr()
+sns.heatmap(corrMatrix, annot=True)
+plt.show()
+
+# total number of bike rentals per year.
+yearly_rentals = hour_data.groupby('yr')['cnt'].sum()
+print("\nTotal bike rentals per year:\n", yearly_rentals)
+
+# feature and target
+features = hour_data.drop(['cnt', 'dteday', 'instant', 'registered', 'casual'], axis=1)
+target = hour_data['cnt']
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.25, random_state=42)
+
+#  scaler
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+X_train_scaled = pd.DataFrame(X_train_scaled, columns=X_train.columns)
+X_test_scaled = pd.DataFrame(X_test_scaled, columns=X_test.columns)
+
+linear_re_model = LinearRegression()
+linear_re_model.fit(X_train, y_train)
+
+gb_re_model = GradientBoostingRegressor(random_state=42)
+gb_re_model.fit(X_train, y_train)
+
+# linear predictions
+linear_re_model_predict = linear_re_model.predict(X_test)
+
+# gb predictions
+gb_re_model_predict = gb_re_model.predict(X_test)
+
+# Evaluate the models
+linear_re_model_mse = mean_squared_error(y_test, linear_re_model_predict)
+print(f"Linear Regressor : Mean Squared Error: {linear_re_model_mse}")
+
+linear_re_model_r2 = r2_score(y_test, linear_re_model_predict)
+print(f"Linear Regressor : R-squared: {linear_re_model_r2}")
+
+gb_re_model_mse = mean_squared_error(y_test, gb_re_model_predict)
+print(f"Gradient Boosting : Mean Squared Error: {gb_re_model_mse}")
+
+gb_re_model_r2 = r2_score(y_test, gb_re_model_predict)
+print(f"Gradient Boosting : R-squared: {gb_re_model_r2}")
+
+#Plot the models with different plots
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, linear_re_model_predict, label='Linear Regression', alpha=0.5)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--', color='red', linewidth=2)
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Linear Regression: Actual vs Predicted')
+plt.legend()
+plt.show()
+
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, gb_re_model_predict, label='Gradient Boosting', alpha=0.5, color='green')
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--', color='red', linewidth=2)  # Add a diagonal line for reference
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Gradient Boosting: Actual vs Predicted')
+plt.legend()
+plt.show()
+
+# Feature Importance
+importances = gb_re_model.feature_importances_
+feature_names = X_train.columns
+feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+# feature importance plot
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Importance', y='Feature', data=feature_importance_df)
+plt.title('Feature Importances (Gradient Boosting)')
+plt.show()
+
+# hyper parameters
+parameters = {'n_estimators': [50, 100, 200], 'learning_rate': [0.01, 0.1, 0.5], 'max_depth': [3, 5, 7]}
+
+# GradientBoostingRegressor model
+gbr_model_ht = GradientBoostingRegressor(random_state=42)
+
+# GridSearchCV
+grid_search = GridSearchCV(gbr_model_ht, parameters, cv=2, scoring='neg_mean_squared_error', n_jobs=-1, verbose=1)
+grid_search.fit(X_train, y_train)
+
+# Best Hyperparameters
+best_parameters = grid_search.best_params_
+best_gbr_model_ht = grid_search.best_estimator_
+print(f"Best Hyperparameters: {best_parameters}")
+
+# prediction
+ht_predictions = best_gbr_model_ht.predict(X_test)
+
+# R-squared
+r2_sc = r2_score(y_test, ht_predictions)
+print(f"R-squared: {r2_sc}")
+
+# plot
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, ht_predictions, label='Hyper-tuned Gradient Boosting', alpha=0.5, color='purple')
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--', color='red', linewidth=2)
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Hyper-tuned Gradient Boosting: Actual vs Predicted')
+plt.legend()
+plt.show()

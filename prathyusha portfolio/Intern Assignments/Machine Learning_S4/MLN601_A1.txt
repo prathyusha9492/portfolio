@@ -1,0 +1,181 @@
+# @title Default title text
+# Import required libraries
+import pandas as pd
+
+# Load the wine data dataset
+wine_data = pd.read_csv('winequality-red.csv', sep=';')
+
+# Display the first few rows of the dataset
+wine_data.head()
+
+# Display the data type dataset
+print("\nData Type Of Wine Data:")
+print("======================")
+wine_data.info()
+
+
+# Display the shape of the dataset
+print("\nShape of the dataset:")
+print("=======================")
+print(wine_data.shape)
+
+# Summary Statistics for dataset
+print("\nSummary Statistics:")
+print("=====================")
+wine_data.describe()
+
+
+# Handle Missing values
+print("\nMissing values :")
+print("==================")
+print(wine_data.isnull().sum())
+
+
+# Handling duplicates
+duplicates = wine_data.duplicated().sum()
+print("Number Of Duplicates: ",duplicates)
+
+
+# Remove Duplicates
+wine_data.drop_duplicates(inplace=True)
+
+# After removal duplicates
+duplicates = wine_data.duplicated().sum()
+print("Number Of Duplicates after removal: ",duplicates)
+
+
+# Outlier Detection
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Identify outliers using the IQR method
+Q1 = wine_data['quality'].quantile(0.25)
+Q3 = wine_data['quality'].quantile(0.75)
+IQR = Q3 - Q1
+
+# Define bounds
+lower_bound = Q1 - 3 * IQR
+upper_bound = Q3 + 3 * IQR
+
+# Remove outliers
+wine_data = wine_data[(wine_data['quality'] >= lower_bound) & (wine_data['quality'] <= upper_bound)]
+
+# Visualizing the data after outlier removal
+plt.figure(figsize=(10, 6))
+sns.boxplot(y='quality', data=wine_data)
+plt.title('Boxplot of Wine Quantity')
+plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Count Values
+def count_values_table(wine_data):
+    count_val = wine_data.value_counts()
+    count_val_percent = 100 * wine_data.value_counts() / len(wine_data)
+    count_val_table = pd.concat([count_val, count_val_percent.round(1)], axis=1)
+    count_val_table_ren_columns = count_val_table.rename(columns={0: 'Count Values', 1: '% of Total Values'})
+    return count_val_table_ren_columns
+
+# Histogram
+def hist_chart(wine_data, col):
+    plt.style.use('fivethirtyeight')
+    plt.hist(wine_data[col].dropna(), edgecolor='k')
+    plt.xlabel(col)
+    plt.ylabel('Number of Entries')
+    plt.title('Distribution of ' + col)
+
+    # Show the plot
+    plt.show()
+
+# Histogram of quality
+hist_chart(wine_data, 'quality')
+# Count values for quality
+print(count_values_table(wine_data['quality']))
+
+
+
+# Relationships using pair plot
+sns.pairplot(wine_data.dropna(), hue='quality', kind='reg', diag_kind='kde', palette='viridis')
+plt.suptitle('Pairplot of Wine Dataset', y=1.02)
+plt.show()
+
+
+# Correlation Matrix
+plt.figure(figsize=(12, 8))
+correlation_matrix = wine_data.corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
+plt.title('Correlation Matrix of Wine Quality Dataset')
+plt.show()
+
+
+
+
+# Display the aggregated correlation matrix
+df_agg = wine_data.groupby('quality').sum()
+
+# Plot aggregated correlation matrix
+plt.figure(figsize=(10, 6))
+sns.heatmap(df_agg.corr(), annot=True, cmap='YlGnBu', linewidths=0.5)
+plt.title('Correlation Matrix of Aggregated Wine Data')
+plt.show()
+
+
+from sklearn.model_selection import train_test_split
+
+# define Feature and target
+X = wine_data.drop(['quality'], axis=1)
+y = wine_data['quality']
+
+# Split into data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+from sklearn.preprocessing import StandardScaler
+
+# Standardize dataset
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+
+
+from sklearn.linear_model import LinearRegression
+
+# Initialize the model
+model = LinearRegression()
+
+
+
+# Evaluate the model
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# Evaluate the model
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+# Print evaluation metrics
+print(f"Mean Absolute Error (MAE)   : {mae}")
+print(f"Mean Squared Error (MSE)    : {mse}")
+print(f"R-squared (R²)              : {r2}")
+
+
+
+# Plot the Residuals and Pridicted Values
+plt.figure(figsize=(10, 5))
+sns.residplot(x=y_pred, y=y_test - y_pred, lowess=True)
+plt.xlabel('Predicted Values')
+plt.ylabel('Residuals')
+plt.title('Residuals vs Predicted Values')
+plt.axhline(y=0, color='r', linestyle='--')
+plt.show()
+
+
+
+# Print Feature impartance
+coefficients = pd.DataFrame(model.coef_, X.columns, columns=['Coefficient'])
+print("Feature Importances:")
+print(coefficients)
+
+

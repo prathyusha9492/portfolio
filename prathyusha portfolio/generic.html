@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<!--
+-->
+<html>
+	<head>
+		<title>Generic Page - projects by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Projects</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">My Projects</a></li>
+							<li class="active"><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">2023</span>
+									<h1><br />
+										Virtual Zoo Report</h1>
+									<p>
+
+										<P></P>Task 1 Animal Class
+										<p></p>1. I would like to mention that I unintentionally omitted the initialization of instance variables
+										(hunger, thirst and boredom) to 50. However, upon executing the program, I promptly
+										recognized this oversight and promptly addressed it by adding the necessary initialization.
+										Other than this, the program ran smoothly without any issues.
+										2. No, I encountered no difficulties when downloading and executing the provided initial code
+										within IntelliJ.
+										3. Nothing to fix in the IntelliJ to compile and run the code. While creating a new project, I
+										selected Java version 17 and created it. Then the given codes have been executed successfully.
+										4. The first line of the provided toString() method dynamically constructs a concise status
+										message for the animal based on whether it is alive or dead. Using a ternary conditional
+										operator, it checks the result of the isDead() method, which evaluates the animal&#39;s well-being
+										by considering factors like hunger, thirst, and boredom. If the animal is alive, the message
+										includes its name; if dead, it appends &quot; (Dead)&quot; to indicate its deceased state along with the
+										name. This single line efficiently captures and communicates the essential information about
+										the animal&#39;s condition.
+										
+										<p></p>Task 2 Animal Selection
+										<P></P>1. In the askNumberAnimals() method of the VirtualZoo class, the program ensures that the
+										user provides a positive integer for the number of animals through a while loop. Within the
+										loop, the program prompts the user with the question and attempts to parse the user input as
+										an integer using Integer.parseInt(scan.nextLine()).
+										a. If the input is a valid integer, it checks whether the entered number is greater than
+										zero. If the condition is met, the loop breaks, indicating a successful entry of a
+										positive integer. If the input is not a valid integer or the entered number is not
+										positive, appropriate error messages are displayed, and the loop continues until a
+										valid and positive integer is provided by the user.
+										b. This validation process ensures that the program receives a valid and positive number
+										of animals from the user.
+										
+										2. The askAnimalName(int id) class ensures the uniqueness of each animal&#39;s name by utilizing
+										a while loop. It prompts the user to input the name for animal #id and checks if the entered
+										name is already present in the animalNames ArrayList using
+										animalNames.contains(animalName). If a duplicate is detected, the user is prompted to
+										provide a different name until a unique one is obtained.
+										3. In askAnimalSpecies method I have created custom method called createAnimal in the
+										VirtualZoo class, a switch statement is employed to dynamically instantiate an animal object
+										based on the user-provided species. The program checks the value of animalSpecies using the
+										switch statement and creates an instance of the corresponding animal class (e.g., Tiger,
+										Giraffe) accordingly. If the provided species matches a recognized type, the corresponding
+										animal object is returned, ensuring a proper and specific instantiation based on the user&#39;s
+										input. If the species is not recognized, the program informs the user that it is not a valid
+										species, and a null value is returned.
+										<p></p>
+										<P></P>Task 3 Item Selection
+										
+										<P></P>1. I have added one more private attribute called lastGivenItem in the Animal class and added a
+										public setter and getter to read and update the last given item for that particular animal. This
+										can be checked while giving a new item to that animal. If the given new item is matching with
+										the last item then the error message is displayed otherwise, the new item has been given to
+										that animal and the lastGivenItem attribute has been updated.
+										2. This situation can be handled by adding one more attribute called secondLastGivenItem in the
+										Animal class. The new attribute and the lastGivenItem attribute can be used to track the last
+										two items given to that animal. If it is increasing more than two last given items, then I can
+										add the items given to that animal to a list. Then it can be tracked based on the Zoo
+										requirements.
+										
+										<P>Task 4 Week Cycle
+										<P>1. The use of static for totalCost means it&#39;s associated with the class, not tied to a specific
+										instance. This allows the variable to persist throughout the entire program, retaining its value
+										even after a method completes. If it were non-static, the variable&#39;s value would be limited to
+										the specific method&#39;s execution, getting reset each time the method finishes. So, static here
+										ensures a program-wide total cost that lasts as long as the program runs.
+										2. Several modifications are needed to enable to manage multiple zoos with separate animals
+										and costs.
+										a. Creating a Zoo class to encapsulate zoo-specific data and functionality. Include
+										instance variables like ArrayList&lt;Animal&gt; animals and int totalCost within the Zoo
+										class.
+										b. Removing the static keyword from totalCost to make it an instance variable. Each
+										Zoo instance will have its own totalCost.
+										c. Updating methods like askItem, weekCycle and others to operate on a specific Zoo
+										instance.
+										
+										<p>Task 5 Animal Species
+										<p>1. The most direct and intended way to determine the species of an Animal object in the
+										provided class hierarchy is by calling the getSpecies() method. While alternative techniques
+										like using the instanceof operator or reflection exist, they are generally less direct, less
+										encapsulated, and may not align with best practices in object-oriented programming.
+										<P></P>2. Making the Animal class an abstract class in the program has several important impacts:
+										a. Abstraction : Defines a common blueprint for all animals with shared attributes and
+										methods.
+										b. Inheritance : Promotes code reuse by allowing subclasses (e.g., Tiger, Giraffe) to
+										extend common behavior from the abstract class.
+										c. Polymorphism : Enables instances of different animal types to be treated uniformly as
+										instances of the common Animal class.
+										d. Forcing Implementation : Abstract classes can declare abstract methods, ensuring that
+										concrete subclasses provide specific implementations.
+									
+										<P></P>3. Transforming the Animal class into an interface brings about several changes, including the
+										introduction of multiple inheritance, the ability to include default method implementations,
+										the absence of fields and constructors, and enhanced flexibility in class implementation when
+										contrasted with using an abstract class.
+										<P></P>4. The Graphical User Interface can be implemented in another class and the VirtualZoo class
+										can be modified to access the data from the GUI and the scanner object inside the VirtualZoo
+										
+										is no longer needed. So, it can be removed and the corresponding input and parameters for the
+										methods can be used from the GUI.</p>
+									</p>
+									
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Adelaide<br />
+								South Australia</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(+61) 416502973</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">nangunoori.prathyusha98@gmail.com</a></p>
+							</section>
+						
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
