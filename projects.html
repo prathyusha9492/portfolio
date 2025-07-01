@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<!--
+-->
+<html>
+	<head>
+		<title>Generic Page - projects by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Home</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li class="active"><a href="projects.html">projects</a></li>
+							<li><a href="projects.html">Experience</a></li>
+						</ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">2023</span>
+									<h1><br />
+										Virtual Zoo Report</h1>
+									<p>
+									</p>
+										
+										  
+
+										<P></P><h3>Task 1 Animal Class</h3>
+									
+										<p>
+										<text-align: left>1.I would like to mention that I unintentionally omitted the initialization of instance variables
+											(hunger, thirst and boredom) to 50. However, upon executing the program, I promptly
+											recognized this oversight and promptly addressed it by adding the necessary initialization.
+											Other than this, the program ran smoothly without any issues.</text-align: left> </p>
+									
+										<p>
+										2. No, I encountered no difficulties when downloading and executing the provided initial code
+										within IntelliJ.</p>
+								
+										<p>3. Nothing to fix in the IntelliJ to compile and run the code. While creating a new project, I
+										selected Java version 17 and created it. Then the given codes have been executed successfully.</p>
+
+										<p>4. The first line of the provided toString() method dynamically constructs a concise status
+										message for the animal based on whether it is alive or dead. Using a ternary conditional
+										operator, it checks the result of the isDead() method, which evaluates the animal&#39;s well-being
+										by considering factors like hunger, thirst, and boredom. If the animal is alive, the message
+										includes its name; if dead, it appends &quot; (Dead)&quot; to indicate its deceased state along with the
+										name. This single line efficiently captures and communicates the essential information about
+										the animal&#39;s condition.</p>
+									
+								</p>
+										<p></p><h3>Task 2 Animal Selection</h3>
+										<P></P>1. In the askNumberAnimals() method of the VirtualZoo class, the program ensures that the
+										user provides a positive integer for the number of animals through a while loop. Within the
+										loop, the program prompts the user with the question and attempts to parse the user input as
+										an integer using Integer.parseInt(scan.nextLine()).
+										a. If the input is a valid integer, it checks whether the entered number is greater than
+										zero. If the condition is met, the loop breaks, indicating a successful entry of a
+										positive integer. If the input is not a valid integer or the entered number is not
+										positive, appropriate error messages are displayed, and the loop continues until a
+										valid and positive integer is provided by the user.
+										b. This validation process ensures that the program receives a valid and positive number
+										of animals from the user.
+										
+										<p>2. The askAnimalName(int id) class ensures the uniqueness of each animal&#39;s name by utilizing
+										a while loop. It prompts the user to input the name for animal #id and checks if the entered
+										name is already present in the animalNames ArrayList using
+										animalNames.contains(animalName). If a duplicate is detected, the user is prompted to
+										provide a different name until a unique one is obtained.</p>
+										<p>3. In askAnimalSpecies method I have created custom method called createAnimal in the
+										VirtualZoo class, a switch statement is employed to dynamically instantiate an animal object
+										based on the user-provided species. The program checks the value of animalSpecies using the
+										switch statement and creates an instance of the corresponding animal class (e.g., Tiger,
+										Giraffe) accordingly. If the provided species matches a recognized type, the corresponding
+										animal object is returned, ensuring a proper and specific instantiation based on the user&#39;s
+										input. If the species is not recognized, the program informs the user that it is not a valid
+										species, and a null value is returned.</p>
+										<p></p>
+										<P></P><h3>Task 3 Item Selection</h3>
+										
+										<P></P>1. I have added one more private attribute called lastGivenItem in the Animal class and added a
+										public setter and getter to read and update the last given item for that particular animal. This
+										can be checked while giving a new item to that animal. If the given new item is matching with
+										the last item then the error message is displayed otherwise, the new item has been given to
+										that animal and the lastGivenItem attribute has been updated.
+										<p>2. This situation can be handled by adding one more attribute called secondLastGivenItem in the
+										Animal class. The new attribute and the lastGivenItem attribute can be used to track the last
+										two items given to that animal. If it is increasing more than two last given items, then I can
+										add the items given to that animal to a list. Then it can be tracked based on the Zoo
+										requirements.</p>
+										
+										<P><h3>Task 4 Week Cycle</h3>
+										<P>1. The use of static for totalCost means it&#39;s associated with the class, not tied to a specific
+										instance. This allows the variable to persist throughout the entire program, retaining its value
+										even after a method completes. If it were non-static, the variable&#39;s value would be limited to
+										the specific method&#39;s execution, getting reset each time the method finishes. So, static here
+										ensures a program-wide total cost that lasts as long as the program runs.
+										<p>2. Several modifications are needed to enable to manage multiple zoos with separate animals
+										and costs.</p>
+										<p></p>a. Creating a Zoo class to encapsulate zoo-specific data and functionality. Include
+										instance variables like ArrayList&lt;Animal&gt; animals and int totalCost within the Zoo
+										class.
+										b. Removing the static keyword from totalCost to make it an instance variable. Each
+										Zoo instance will have its own totalCost.
+										c. Updating methods like askItem, weekCycle and others to operate on a specific Zoo
+										instance.
+										
+										<p><h3>Task 5 Animal Species</h3>
+										<p>1. The most direct and intended way to determine the species of an Animal object in the
+										provided class hierarchy is by calling the getSpecies() method. While alternative techniques
+										like using the instanceof operator or reflection exist, they are generally less direct, less
+										encapsulated, and may not align with best practices in object-oriented programming.
+										<P></P>2. Making the Animal class an abstract class in the program has several important impacts:
+										a. Abstraction : Defines a common blueprint for all animals with shared attributes and
+										methods.
+										b. Inheritance : Promotes code reuse by allowing subclasses (e.g., Tiger, Giraffe) to
+										extend common behavior from the abstract class.
+										c. Polymorphism : Enables instances of different animal types to be treated uniformly as
+										instances of the common Animal class.
+										d. Forcing Implementation : Abstract classes can declare abstract methods, ensuring that
+										concrete subclasses provide specific implementations.
+									
+										<P></P>3. Transforming the Animal class into an interface brings about several changes, including the
+										introduction of multiple inheritance, the ability to include default method implementations,
+										the absence of fields and constructors, and enhanced flexibility in class implementation when
+										contrasted with using an abstract class.
+										<P></P>4. The Graphical User Interface can be implemented in another class and the VirtualZoo class
+										can be modified to access the data from the GUI and the scanner object inside the VirtualZoo
+										
+										is no longer needed. So, it can be removed and the corresponding input and parameters for the
+										methods can be used from the GUI.</p>
+									<p>
+
+									</p>
+									<p>
+
+									</p>
+									<header><h3>Project 2</h3></header>
+									</p><p><header><h2>Computing Fundamentals</h2></header></p>
+									<p><h3>Application</h3>
+										<p>To guarantee scalability and manage greater demand during peak hours, ABC Enterprise
+										should host its web applications and servers on (EC2). This will ensure that your data is
+										available and secure.</p>
+										<h3>Models for Cloud Services</h3>
+										There are three primary service models for cloud computing services: Infrastructure as a service
+										(IaaS), platform as a service (PaaS), and software as a service (SaaS).
+										IaaS: IaaS offers storage, networks, virtual machines, and other virtualized computer resources
+										over the Internet (Hanczewski & Stasiak, 2024). These virtualized resources may execute the
+										operating systems and programs the users have installed.
+										<p>PaaS: With PaaS, users can create, deploy, and manage apps without worrying about the nitty-
+										gritty of the underlying Infrastructure (Isharufe & Jaafar, 2020). This category includes
+										databases, middleware, and integrated development environments (IDEs).</p>
+										<p>SaaS: Subscription-based SaaS provides access to various applications over the Internet. The
+										cloud provider handles everything, from the underlying Infrastructure to the application
+										software and data.</p>
+										<p><h4>Cloud Deployment Frameworks</h4></p>
+										<p>The models used to deliver cloud services outline the steps consumers must take to access these
+										services. Here are the four most common deployment models:</p>
+										<p>The public cloud: Multiple companies share the same public cloud services, which are offered
+										via the public Internet (Deng & Qin, 2020). In the public cloud, may find services provided by
+										companies like AWS, Google Cloud, and Microsoft Azure.</p>
+										<p>Private Cloud: Dedicated to a single enterprise, private cloud services run on a private
+										network that may be hosted in-house or by an outside supplier (Dhaya & Kanthavel, 2021).
+										Hybrid Cloud: With a hybrid cloud, users are able to access and share resources across both
+										public and private clouds (Lei & Wu, 2022).</p>
+										<p>Multi-Cloud: To avoid becoming too reliant on any one vendor and make the most of the
+										capabilities offered by each platform, multi-cloud uses several distinct cloud services from
+										several suppliers.</p>
+										<p><h4>Proper ABC Enterprise Models</h4></p>
+										<p>The best models to meet ABC Enterprise's needs are: IaaS is the service model.
+										Rationale: By using Infrastructure as a Service, ABC can manage and configure its servers,
+										storage, and networks with the required control and flexibility.</p>
+										
+										<p><h3>3.Deployment Model: Public Cloud</h3></p>
+										Rationale: An important consideration for ABC, a startup, is the low cost of the public cloud
+										architecture. Public clouds, like as AWS, provide excellent scalability and dependability,
+										guaranteeing that ABC can manage demand fluctuations without experiencing downtime.
+										<p>Problem Statement
+										Several serious IT issues ABC Company's expansion and productivity. Startups in particular
+										may find it difficult to afford the large initial expenditures required by traditional IT
+										infrastructure, which include hardware, software, and physical space. There are performance
+										issues during peak hours since this design isn't scalable enough to handle the growing number
+										of customers. The lack of thorough disaster recovery plans and redundant systems makes it
+										even more difficult to maintain high availability and dependability, leading to frequent
+										interruptions and information security issues. Due to its rigidity, the traditional paradigm needs
+										continual human involvement to adjust resource allocations in response to unpredictable
+										workload fluctuations. All of these problems make it harder for ABC Enterprise to be
+										innovative, quick to react to customer needs, and reliable in their service. A more adaptable,
+										scalable, and economical IT infrastructure solutions is a need for ABC Enterprise if it wants to
+										keep up with the competition and make the most of its resources.</p>
+										<p><h4>Steps to Overcome</h4></p>
+										To solve their IT problems, ABC Enterprise moved to cloud computing, which drastically cut
+										their initial investment. The company could manage higher demand during peak hours by using
+										(EC2) for versatile and scalable hosting of web app servers.
+										<p>Route53 Pricing for Route 53 on Amazon A DNS web service that is both scalable and very available
+										is Route 53. Some important parts of the cost are:</p>
+										<p>➢ Prices for hosted zones start at $0.50/month for the first 25 zones and drop to $0.10/zone
+										after that (Haque, 2020).</p>
+										<p>➢ DNS costs $0.40 per million for the first one billion enquiries, and for every billion
+										queries after that, it drops to $0.20.</p>
+										<p>➢ Monthly health checks cost $0.50 each.</p>
+										<p>Costs of Amazon S3</p>
+										<p>➢ Scalable object storage is available with Amazon S3. Aspects of the cost consist of:
+										4</p>
+										<p>➢ Standard Storage costs $0.023 per GB up to 50 TB per month, while Infrequent Access
+										costs $0.0125 per GB</p>
+										<p>➢ The cost for each 1,000 requests is $0.005 for PUT, COPY, POST, and LIST
+										operations, and $0.0004 for GET operations.</p>
+										<p>➢ For data transfers up to 10 TB per month, the cost is $0.09 per GB.</p>
+										<p><h3>Elastic Compute Cloud at Amazon</h3></p>
+										There are two main pricing structures for the resizable computational capability that EC2
+										offers:
+										<p></p>➢ Ideal for unexpected workloads, on-demand instances allow to pay by hour or second
+										with no long-term obligations (Choudhary A. , 2021).
+										<p></p>➢ Save as much as 75% with a one- or three-year commitment; this plan works well for
+										workloads that remain relatively constant
+										Suitable Cost Model for ABC Enterprise
+										<p></p>➢ Route 53: An Appropriate Cost Model for ABC Enterprise Make sure dependability
+										and performance are guaranteed by using standard pricing.
+										<p></p>➢ Amazon Simple Storage Service (S3): For data that is accessed often, choose Standard
+										Storage. For data that has to be accessed infrequently, use Infrequent Access.
+										<p></p>➢ Amazon Elastic Compute Cloud: To maximize efficiency and minimize expenses, use
+										a mix of On-Demand Instances for unpredictable, short-term demands and Reserved
+										Instances for more predictable, long-term workloads.
+										<p></p>Best Cloud AWS
+										Because of its maturity and extensive service offerings, AWS is perfect for innovation and
+										adaptability. Azure is ideal for businesses that use Microsoft products since it interfaces with
+										them smoothly. Applications that rely heavily on data will find GCP's strengths in machine
+										learning and analysis to be an ideal fit.
+										<p><h3>Elastic Compute Cloud (EC2) by Amazon</h3></p>
+										<p>Description: Amazon EC2 offers the elastic cloud computing capacity. Users may start
+										instances, which are virtual servers, with different combinations of compute, memory, storage,
+										and networking capabilities.</p>
+										<p><h6>Key Features:</h6></p>
+										<p></p>➢ A vast array of instance types are designed for certain use cases, including instances
+										optimized for computation, memory, and storage, among others (Choudhary & Verma,
+										2021).
+										5
+										<p>Elasticity is the capacity to autonomously scale up or down using Auto Scaling groups,
+										guaranteeing the best possible performance and cost-effectiveness.
+										<p></p>➢ On-demand, Reserved, and Spot Instances are some pricing choices that may be used
+										to minimize costs according to consumption patterns.
+										<p><h3>Application for ABC Company:</h3></p>
+										ABC may host their app's web and application servers on Amazon EC2 instances. The
+										scalability feature guarantees the service can handle increased demand without interruption at
+										peak periods, like a successful marketing campaign.
+										<p><h3>Amazon Simple Storage Service (S3)</h3></p>
+										Description: Amazon S3 is an object storage solution that can store and retrieve unlimited data
+										from any location on the web. It is also very secure and has a long lifespan (Teylo & Brum,
+										2020). Regarding AWS services, S3 is well-known for its stability, high availability, and
+										integration options.</p>
+										<h6>Key Features:</h6>
+										<p></p>➢ Data is securely stored and easily available with S3's availability over a year and
+										durability.
+										<p></p>➢ Automatically handles increasing data loads without sacrificing performance; scalable.
+										<p></p>➢ Data management lifecycle rules may be defined, allowing for actions like
+										automatically removing objects after a certain time or moving data to alternative storage
+										types.
+										<p><h3>Application for ABC Company:</h3></p>
+										A lot of the static stuff ABC's software needs, such as backups and images, may be stored in
+										S3. Durability and availability of the service guarantee that vital data is accessible and secure
+										at all times, while lifecycle rules aid in cost management for storage by moving older data to
+										less expensive storage classes.
+										<p><h3>Implementation</h3></p>
+										By moving their operations to the cloud, ABC Enterprise may take advantage of lower initial
+										investment, more scalable resources to meet future expansion, and more dependability with
+										less downtime.
+										<p><h3>Efficient use of resources</h3></p>
+										<p>Advantages: The initial expenses of information technology infrastructure may be reduced,
+										which is one of the benefits of cloud computing. It is possible that traditional information</p>
+										
+										<p>6.technology setups need significant expenditures in hardware, software, and facilities, which
+										may be prohibitive for startups. There is a usage-based pricing model for cloud services, which
+										are pay-as-you-go.</p>
+										<p><h4>have the following characteristics:</h4></p>
+										<p>• The pay-as-you-go model through pricing allows ABC to pay only for the resources it
+										utilizes, eliminating significant up-front costs and boosting the efficiency of its funds
+										(Daum & Zhang, 2023).</p>
+										<p>• Elasticity guarantees that ABC will only pay for what it needs since resources may be
+										dynamically scaled up or down in response to demand, maximizing cost efficiency.
+										Scalability and adaptability</p>
+										<p><h3>Advantages:</h3> The scalability offered by cloud services is unparalleled, making them an
+										indispensable instrument for growing companies. Cloud services are easily scalable, which
+										allows them to accommodate ABC's expanding customer base.</p>
+										<p><h4>Clouds have the following characteristics:</h4></p>
+										<p></p>• Assuring optimal performance and cost-efficiency, elastic computing resources on
+										cloud systems such as XYZ Cloud may scale up to meet peak demand and down when
+										demand declines. This allows maximum resources to be used (Li & Lu, 2021).
+										<p>• The growth of ABC is made possible by auto-scaling, which provides management of
+										fluctuating workloads without requiring operator involvement.</p>
+										<p><h3>Reliability and abundance of availability</h3></P>
+										<p><h3>Advantages:</h3> XYZ Cloud offers cloud services that are trustworthy and accessible, with the
+										goal of both minimizing downtime and ensuring that applications are always available.
+										<p><h4>Clouds have the following characteristics:</h4></p>
+										<p>• Cloud service providers provide high availability by using redundant systems and
+										replicating data across several locations with multiple copies (Souza & da Costa, 2020).</p>
+										<p>• Cloud providers provide database administration, backup solutions, and disaster
+										recovery plans, all of which contribute to increased dependability and reduce the work
+										the IT management team at ABC must do.</p>
+									<p></p>
+
+									<p><header> <h3>Project 3</h3> </header></p>
+									<p><header> <h3>Intelligent Systems</h3> </header></p>
+									<p></p>
+									<p><h4>Case study on artificial intelligence ethical implications for the future
+										signal identification using text mining technique</h4>
+										<h4>Introduction</h4>
+										<p>The aim of this report is to analyze the ethical implications of artificial intelligence centered
+										applications in everyday life such as healthcare, sports, leisure, finance, military, traffic and
+										much more. The implementation of new advanced AI technology based big data era, had a
+										lot of potential impacts while identifying and predicting future signals. In the upcoming
+										studies, the prediction of future signal is significantly an emerging task for the analysis of
+										future trends and gaining competitive and future useful insights. The large scale firms such as
+										Google, Tesla and IBM produces massive amount of data, this increases the demands of future
+										signal identification. Many researchers have proposed aiding text mining process depending
+										upon data sources such academic papers and social media and lot more. However, the
+										predominant future signal detection is still underneath investigation phase of research area
+										and it has a necessity to enhance existing methodology including theoretical framework. The
+										current work overviews various studies on determining significant problem due to feeble
+										signal prediction approach. This report uncovers revised methodology that includes text
+										mining in terms of qualitative and quantitative approach for analyzing the goodness of future
+										signal. Furthermore, the report collected text input data from host database analyzed AI
+										ethical implications and provided results based on the classification of weak, well-known
+										latent and strong signal. This revised technology will be adopted by business stakeholders and
+										government to gain insights for the detecting future signals in different areas.</p>
+										<p><h4>Background information</h4></p>
+										AI application system improves decision making capabilities by extracting, analyzing and
+										predicting vast amount of data effectively and efficiently as well as identifies patterns and
+										valuable insights that could be neglected by humans. This helps many business organizations
+										to achieve more data driven informed decisions and improves operational efficiently and
+										reduces errors and eventually fostering better business outcomes (Lee & Park, 2017, p. 653-
+										667). Therefore, government sector and companies are increasingly become looking for
+										<p></p>3.emerging trends as well as problems that have an ability to frame up their forthcoming
+										operational events. This study explores text mining process for determining future signals of
+										the particular business sector. The study findings highlights AI and its ethical implications
+										while adopting new AI centered technology like text mining for finding future trends and
+										signal detection. However, addressing various biases and confirming fairness in the
+										implementation of AI technological algorithm is major ethical issue and concern. AI centered
+										application system has often used massive amount of sensitive data including customer
+										personal identity and banking information. This ethical dilemma has been laid under many
+										phases during data collection, data storage and data protection against security and privacy
+										breaches and violation (Lei Ma et al., 2018, p. 062188). This report also addresses this issue
+										by initiation of possible recommendations of future research area.
+										<p><h4>Methods</h4></p>
+										Text mining methods are often used in several business managements widely leveraged for
+										the transformation process of unstructured text into well-structured style to find meaningful
+										insights and new patterns. This text mining technique can analyze vast amount of data
+										including qualitative and quantitative textual source material to capture useful and hidden
+										values, concepts, patterns and relationship (Krigsholm & Riekkinen, 2019, p. 181). The
+										existing methodology is improved by new methodological approach. This new methodology
+										based qualitative and quantitative analysis has been implemented in this research for
+										forecasting future signals and other events. This methodological approach provides insights
+										for both business stakeholders and government. The revised text mining analytical framework
+										would be implemented that includes mixed research methodologies such as qualitative and
+										quantitative analysis. The required text data will be collected from online publications and
+										other data sources like host databases. Using this text data from various sources, the report
+										highlights ethical deliberations of AI especially through keyword search option. To analyze
+										weak signal, the text mining method will be used from web sources to measure signal as well
+										as ethical issues. The keywords frequency is extracted from corpus and classified keywords
+										in terms of low frequency as weak signal and high frequency and increase rate as strong signal.
+										This methodological approach also incorporates degree of visibility or DoV for demonstrating
+										signal and degree of diffusion or DoD for demonstrating issue. In addition, the document
+										<p></p>4.frequency DF, total occurrence frequency TF is calculated every year and used for the
+										calculation of DoD and DoV. Finally keyword portfolio map is demonstrated with keyword
+										emergence map KEM and keyword issue map KIM.
+										<p><h4>Results</h4></p>
+										This technique plays significant role in many organization and government agencies to easily
+										and quickly analyze and comprehend the text and extract meaningful insights using short span
+										of time. Many researchers and business analysts have used this technique for analyzing the
+										information based on the topic and problem. This technique makes the text easier to read
+										because of its visualization features such as charts, graphs and maps etc. It is also possible to
+										process complex and multilingual data texts and generate several understandable forms.
+										Figure 1: Revised framework for determining future signal
+										The above figure shows the output of revised framework that detects the future signal with
+										the help of KEM map, KIM map and achieved identification of specific topic and topic
+										mapping. As a result, the signal dimension and issue will be measured effectively. Keywords
+										are classified by keyword portfolio maps for an effective interpretation of identification of
+										future signals estimated by set of keywords. The purpose of the report is to examine those
+										keywords derived by each practitioners cluster and ensured that the cluster must be
+										identified as a main topic of issue through analyzing actual texts. From this analysis, the strong
+										signal and weak signal related to implications of ethical issues incorporated in AI.
+										<p><h4>Discussion</h4></p>
+										There are several methods has been used as text mining process for finding future signals that
+										includes natural language processing or NLP, clustering, content analysis, text categorization,
+										information extraction, summarization, sentiment analysis, pattern taxonomy, visualization
+										and so on. This type of text mining technology transforms the large data set or text into a
+										readable and shorter version. Environmental scanning or horizon scanning is one of the
+										traditionally implemented forethought methodologies (Zoccarato et al., 2024, p. 103476). It
+										has been widely used to help the management to obtain future events by accessing data from
+										external field of environment. The text mining methodology process relatively involves in the
+										process of identification of trends, relationship and events from environmental data analysis.
+										Finding a weak signal is quite challenging one which is detected by interrupted and unfamiliar
+										events. Some procedures are followed for foresight the detection of weak signal. First is
+										scanning the signal, assessing the signal, transforming weak signals into problems and finally
+										interpreting problems. The revised method considers both quantitative as well as qualitative
+										analysis. The predicted future signal has its own three dimensions such as issue, signal and
+										interpretation (Ravi Kumar et al., 2020, p. 324-332). The revised method detects future signal
+										through AI driven intelligence system using text mining. This report highlights detailed
+										definition of each signal type and their contributions in the following research case study.
+										Through text mining research method, the strong signal based issue topic regarding AI ethical
+										risk such as privacy, human error and safety related keywords are identified effectively.
+										Similarly, weak signal based issue topic related keywords are identified regarding AI ethical
+										issue from collected data.
+										<p><h4>Recommendations</h4></p>
+										There are several limitations for the prediction of future research signal and issue. This section
+										provides some possible recommendation ways to overcome the problems of current
+										methodology to find future signal regarding ethical issues associated in AI technology.
+										• It has been recommended to use sophisticated methodology as well as analysis
+										<p><h3>Techniques and theoretical approach</h3></p>
+										
+										• Keyword clustering is a method that has been implemented for accurate signal or issue
+										topic selection (Ramzan Talib et al., 2016, p. 414-418).
+										• Semantic network analysis helps future study and reveals many hidden values,
+										perceptions and phenomena.
+										• It is possible to convert weak signal into strong signal by discovering semantic network
+										patterns used in clustering keywords.
+										• Based on the identification of future signal, the AI ethical issue (Bankins & Formosa,
+										2023, p. 725-740) is analyzed effectively which is mitigated effectively through the
+										help of risk management, fair and transparent AI system implementation and so on.
+										• AI system is reviewed to ensure the ethical standards and to anticipate risks.
+										<p> <h3>Conclusion</h3></p>
+										The research attempts to determine the future patterns, events and trends from the collected
+										massive information that exploits in the emerging big data era. It is very challenging to provide
+										methodological approaches to overcome the credibility issue and less accurate prediction
+										when processing, accessing and analyzing vast amount of data. In this research, an efficient
+										methodological development for finding future signal is effectively demonstrated. For this
+										reason, the revised framework is established based on the case study of implications of ethical
+										issues while adopting AI system and robotics. This could be enhanced methodology for
+										providing analytical capabilities by combing qualitative analysis to the previously
+										implemented quantitative analysis. These improved and revised methods can be used to
+										evaluate the issue status diffused from ability to emerging problem. In future, this method
+										would be applied to both business organizations and government by providing qualitative and
+										quantitative analysis and incorporating from latent signal to known future signal.</p>
+
+									
+									
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Adelaide<br />
+								South Australia</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(+61) 416502973</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">nangunoori.prathyusha98@gmail.com</a></p>
+							</section>
+						
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
